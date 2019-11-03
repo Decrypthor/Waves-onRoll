@@ -1,0 +1,54 @@
+{-# STDLIB_VERSION 3 #-}
+{-# SCRIPT_TYPE ACCOUNT #-}
+{-# CONTENT_TYPE DAPP #-}
+
+
+@Callable(i)
+func enrollEmpPay (employee,empId,amount,description) = if (if ((this == i.caller))
+    then !(isDefined(getBoolean(this, (employee + "_state"))))
+    else false)
+    then WriteSet([DataEntry((employee + "_state"), "enrolled"), DataEntry((employee + "_id"), empId), DataEntry((employee + "_amount"), amount), DataEntry((employee + "_description"), description), DataEntry((employee + "_enrolledBy"), toBase58String(i.caller.bytes))])
+    else throw((("Pay for " + employee) + " has already been enrolled or caller is not dApp owner"))
+
+
+
+@Callable(i)
+func reviseEmpPay (employee,amount,description) = if ((this == i.caller))
+    then {
+        let desc =         match getString(this, (employee + "_description")) {
+            case x: Unit => 
+                "unset"
+            case x: String => 
+                ((x + "; Revised:  ") + description)
+            case _ => 
+                throw()
+        }
+        WriteSet([DataEntry((employee + "_amount"), amount), DataEntry((employee + "_description"), desc), DataEntry((employee + "_revisedBy"), toBase58String(i.caller.bytes))])
+        }
+    else throw("Caller is not dApp owner")
+
+
+
+@Callable(i)
+func payEmp (employee) = {
+    let callerStr = toBase58String(i.caller.bytes)
+    let status =     match getString(this, (employee + "_state")) {
+        case x: Unit => 
+            "unset"
+        case x: String => 
+            x
+        case _ => 
+            throw()
+    }
+    let amount = extract(getInteger(this, (employee + "_amount")))
+    if ((status == "enrolled"))
+        then ScriptResult(WriteSet([DataEntry((employee + "_paidBy"), callerStr)]), TransferSet([ScriptTransfer(@extrUser(addressFromString)(value(employee)), amount, unit)]))
+        else throw("Employee not enrolled")
+    }
+
+
+@Verifier(tx)
+func verify () = match tx {
+    case _ => 
+        sigVerify(tx.bodyBytes, tx.proofs[0], tx.senderPublicKey)
+}
