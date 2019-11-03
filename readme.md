@@ -1,14 +1,6 @@
-# YoVo Front end
+# Waves onRoll
 
-Todo:
+Payroll on WAVES Blockchain
 
-1. The landing page.
-   1. Decide what content to put
-   2. Decide the layout
-2. The upload page.
-   1. Decide on content
-   2. Decide on layout
-3. University Profile page
+![payroll2](https://user-images.githubusercontent.com/54766691/68090011-c55c9400-fe23-11e9-909e-3f6d764646fc.jpeg)
 
-Discuss:
-1. Should we have the sign up form in the front page? What if we need more data in the future?
