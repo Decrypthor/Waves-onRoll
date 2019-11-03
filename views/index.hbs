@@ -1,0 +1,227 @@
+ <script type="text/javascript">
+        function getFormData(data) {
+          var unindexed_array = data;
+          var indexed_array = {};
+
+          $.map(unindexed_array, function(n, i) {
+            indexed_array[n['name']] = n['value'];
+          });
+
+          return indexed_array;
+        }
+      function submitForm()
+        {
+            event.preventDefault();        
+            $.ajax({
+                url: "/login",
+                type: "POST",
+                data: JSON.stringify(getFormData($("#loginForm").serializeArray())),
+                processData: false,
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (data, status)
+                {
+                  
+                  if(data.status=="yes"){
+                    console.log("yes");
+                    window.location.href = "/verify";
+                  }
+                  else
+                    alert(data);
+                },
+                error: function (xhr, desc, err)
+                {
+                    alert(err);
+                  //window.location.href = "/signup/failure";
+                }
+            });        
+        }
+ </script>
+
+
+ 
+
+  
+
+
+
+
+<div class="wrapper">
+  <section class="hero">
+    <header>
+      <div class="container">
+        <nav class="navbar navbar-light navbar-toggleable-sm">
+          <a href="#" class="navbar-brand mb-0">Waves Payroll</a>
+
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#headerNav" aria-controls="headerNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div id="headerNav" class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+              {{!-- <li class="nav-item">
+                <a class="nav-link" href="#sec-about">About</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#sec-features">Features</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#sec-pricing">Pricing</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#sec-testimonials">Testimonials</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#sec-contact">Contact</a>
+              </li> --}}
+              <li class="nav-item">
+                <button type="button" class="nav-link myButton" data-toggle="modal" data-target="#exampleModal">
+                  Sign In
+                </button>
+              </li>
+              <li class="nav-item">
+                <button type="button" class="nav-link myButton" data-toggle="modal" data-target="#exampleModal2">
+                  Sign up
+                </button>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <div  style=""> 
+        <div class="jumbotronn">
+
+          <div class="container">
+            <!-- Button trigger modal -->
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  {{!-- <div class="modal-header"> --}}
+                    {{!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> --}}
+                    {{!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button> --}}
+                  {{!-- </div> --}}
+                  <div class="modal-body"> 
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-2"></div>
+                            <div class="col-lg-8 col-md-8 login-box">
+                                <div class="col-lg-12 login-key">
+                                    <i class="fa fa-key" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-lg-12 login-title">
+                                    Sign In
+                                </div>
+
+                                <div class="col-lg-12 login-form">
+                                    <div class="col-lg-12 login-form">
+                                        <form method="POST" id="loginForm" onsubmit="submitForm()" action="/login">
+                                            <div class="form-group">
+                                                <label class="form-control-label">USERNAME</label>
+                                                <input type="text" name="username" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-control-label">PASSWORD</label>
+                                                <input type="password" name="password" class="form-control" i>
+                                            </div>
+
+                                            <div class="col-lg-12 loginbttm">
+                                                <div class="col-lg-6 login-btm login-text">
+                                                    <!-- Error Message -->
+                                                </div>
+                                                  <div class="login-button">
+                                                      <button type="submit" class="btn btn-outline-primary">LOGIN</button>
+                                                </div>
+                                                
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-2"></div>
+                            </div>
+                        </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+              <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  {{!-- <div class="modal-header"> --}}
+                    {{!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> --}}
+                    {{!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button> --}}
+                  {{!-- </div> --}}
+                  <div class="modal-body"> 
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-2"></div>
+                            <div class="col-lg-6 col-md-8 login-box">
+                                <div class="col-lg-12 login-key">
+                                    <i class="fa fa-key" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-lg-12 login-title">
+                                    Sign Up
+                                </div>
+
+                                <div class="col-lg-12 login-form">
+                                    <div class="col-lg-12 login-form">
+                                        <form method="POST" id="loginForm" onsubmit="submitForm()" action="/login">
+                                            <div class="form-group">
+                                                <label class="form-control-label">USERNAME</label>
+                                                <input type="text" name="username" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-control-label">PASSWORD</label>
+                                                <input type="password" name="password" class="form-control" i>
+                                            </div>
+
+                                            <div class="col-lg-12 loginbttm">
+                                                <div class="col-lg-6 login-btm login-text">
+                                                    <!-- Error Message -->
+                                                </div>
+                                                  <div class="login-button">
+                                                      <button type="submit" class="btn btn-outline-primary">Sign Up</button>
+                                                </div>
+                                                 
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-2"></div>
+                            </div>
+                        </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+        </div>
+        </div>
+    </div>
+  </section>
+ 
+</div>
+
+
+
+
+ 

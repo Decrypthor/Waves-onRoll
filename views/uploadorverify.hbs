@@ -1,0 +1,234 @@
+
+
+<div class="page">
+  <div class="navbar menu" style="position: absolute;">
+    <div class="user">
+      <div class="user__pic"></div>
+      <div class="user__name">{{uni_name}}</div>
+    </div>
+    <div class="bar">
+      <div class="options">
+      <ul>
+        <li class="active">Homepage</li>
+        <li onClick="toggleEnroll()"><span class="options__division" >Enroll</span></li>
+        <li  onClick="toggleRevise()"><span class="options__division">Revise</span></li>
+         
+        {{!-- <li>Upload</li>
+        <li>Verify</li> --}}
+      </ul>
+    </div>
+      <div class="settings">
+      <ul>
+        <li class="acc-settings"><i class="fas fa-cog"></i> Account Settings</li>
+        <li><i class="fas fa-sign-out-alt"></i> Logout</li>
+      </ul>
+    </div>
+    </div>
+  </div>
+  <div class="content">
+ 
+
+
+    <div class='container'>
+        
+ 
+        <div id="enrollClick">
+        <div class='panel panel-primary dialog-panel'>
+        <div class='panel-heading'>
+            <h5 class="Signup-title" >Enroll</h5>
+        </div>
+        <div class='panel-body'>
+            {{!-- <form class='form-horizontal' name="uploadForm" id="uploadForm" method="POST" onsubmit="submitUploadForm();" action="/upload" > --}}
+            <div class="form-horizontal">
+            <div class='form-group'>
+                <label class='control-label col-md-2 col-md-offset-2' for='student_name'>Employee Wave Address</label>
+                <div class='col-md-6'>
+                <div class='form-group'>
+                    <div class='col-md-11'>
+                    <input class='form-control' id='enroll_emp_addr' name="student_name"  type='text'>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label class='control-label col-md-2 col-md-offset-2' for='student_id'>Employee Id</label>
+                <div class='col-md-6'>
+                <div class='form-group'>
+                    <div class='col-md-11'>
+                    <input class='form-control' id='enrol_emp_id' name='student_id'  type='text'>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label class='control-label col-md-2 col-md-offset-2' for='student_id'>Employee Salary</label>
+                <div class='col-md-6'>
+                <div class='form-group'>
+                    <div class='col-md-11'>
+                    <input class='form-control' id='enrol_emp_salary' name='student_id'  type='text'>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label class='control-label col-md-2 col-md-offset-2' for='student_id'>Employee Salary Description</label>
+                <div class='col-md-6'>
+                <div class='form-group'>
+                    <div class='col-md-11'>
+                    <input class='form-control' id='enrol_emp_description' name='student_id'   type='text'>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class='form-group'>
+                <div class='col-md-offset-4 col-md-3'>
+                {{!-- <button class='btn-lg btn-primary' type='submit'>Request Reservation</button> --}}
+                    <div class="login-button" id="enrollreactbtn">
+                        <button id="testButton" class="btn btn-outline-primary"  >Enroll</button>
+                    </div>
+                    {{!-- <div class="login-button">
+                        <button type="submit" class="btn btn-outline-primary" >Upload</button>
+                    </div> --}}
+                </div>
+            </div>
+            {{!-- </form> --}}
+            </div>
+        </div>
+        </div>
+        </div>
+
+
+
+        <div id="reviseClick">
+            <div class='panel panel-primary dialog-panel'>
+                <div class='panel-heading'>
+                    <h5 class="Signup-title" >Enroll</h5>
+                </div>
+                <div class='panel-body'>
+                    {{!-- <form class='form-horizontal' name="uploadForm" id="uploadForm" method="POST" onsubmit="submitUploadForm();" action="/upload" > --}}
+                    <div class="form-horizontal">
+                    <div class='form-group'>
+                        <label class='control-label col-md-2 col-md-offset-2' for='student_name'>Employee Wave Address</label>
+                        <div class='col-md-6'>
+                        <div class='form-group'>
+                            <div class='col-md-11'>
+                            <input class='form-control' id='revise_emp_addr' name="student_name"  type='text'>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class='form-group'>
+                        <label class='control-label col-md-2 col-md-offset-2' for='student_id'>Employee Salary</label>
+                        <div class='col-md-6'>
+                        <div class='form-group'>
+                            <div class='col-md-11'>
+                            <input class='form-control' id='revise_emp_salary' name='student_id'  type='text'>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class='form-group'>
+                        <label class='control-label col-md-2 col-md-offset-2' for='student_id'>Employee Salary Description</label>
+                        <div class='col-md-6'>
+                        <div class='form-group'>
+                            <div class='col-md-11'>
+                            <input class='form-control' id='revise_emp_description' name='student_id'   type='text'>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class='form-group'>
+                        <div class='col-md-offset-4 col-md-3'>
+                        {{!-- <button class='btn-lg btn-primary' type='submit'>Request Reservation</button> --}}
+                            <div class="login-button" id="revisereactbtn">
+                                <button id="testButton" class="btn btn-outline-primary"  >Enroll</button>
+                            </div>
+                            {{!-- <div class="login-button">
+                                <button type="submit" class="btn btn-outline-primary" >Upload</button>
+                            </div> --}}
+                        </div>
+                    </div>
+                    {{!-- </form> --}}
+                    </div>
+                </div>
+        </div>
+
+ 
+    
+
+        
+
+
+
+        </div>
+    </div>
+
+ 
+
+<script type="text/javascript">
+
+
+    
+
+
+
+
+
+    document.getElementById("reviseClick").style.display = "none";
+     
+    
+    function toggleEnroll(){
+        document.getElementById("reviseClick").style.display = "none";
+         
+        var x = document.getElementById("enrollClick");
+        x.style.display = "block";        
+    }
+    function toggleRevise(){
+        document.getElementById("enrollClick").style.display = "none";
+        
+        var x = document.getElementById("reviseClick");
+        x.style.display = "block";
+    }
+    function toggleRevoke(){
+        document.getElementById("reviseClick").style.display = "none";
+        document.getElementById("enrollClick").style.display = "none";
+              
+    }
+    function submitVerifyForm(){
+        event.preventDefault();
+        var form = new FormData();
+        form.append("file", document.getElementById("upload").value);
+        $.ajax({
+            async: true,
+            crossDomain: true,
+            url: "https://ipfs.infura.io:5001/api/v0/add?pin=false",
+            method: "POST",
+            processData: false,
+            contentType: false,
+            data: form,
+            success: function(data){
+                console.log("Success", data);
+                
+            },
+            error: function(err) { 
+                console.log("Error", err);
+                 
+            }
+         });
+ 
+    }
+
+</script>
+
+
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- Load our React component. -->
+    
+  <script  src="/javascripts/reactclick.js"></script>
+
+
+  

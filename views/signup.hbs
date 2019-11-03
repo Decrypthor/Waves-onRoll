@@ -1,0 +1,127 @@
+ <script type="text/javascript">
+        function getFormData(data) {
+          var unindexed_array = data;
+          var indexed_array = {};
+
+          $.map(unindexed_array, function(n, i) {
+            indexed_array[n['name']] = n['value'];
+          });
+
+          return indexed_array;
+        }
+      function submitForm()
+        {
+            event.preventDefault();        
+            $.ajax({
+                url: "/signup",
+                type: "POST",
+                data: JSON.stringify(getFormData($("#signUpForm").serializeArray())),
+                processData: false,
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (data, status)
+                {
+                  
+                  if(data.status=="yes"){
+                    window.location.href = "/signup/success";
+                  }
+                  else
+                    window.location.href = "/signup/failure";
+                },
+                error: function (xhr, desc, err)
+                {
+                  console.log(err);
+                  //window.location.href = "/signup/failure";
+                }
+            });        
+        }
+ </script>
+  <div class='container'>
+    <div class='panel panel-primary dialog-panel'>
+      <div class='panel-heading'>
+        <h5 class="Signup-title" >Sign Up</h5>
+      </div>
+      <div class='panel-body'>
+        <form class='form-horizontal' name="signUpForm" id="signUpForm" method="POST" onsubmit="submitForm()" action="/signup" >
+        <div class='form-group'>
+            <label class='control-label col-md-2 col-md-offset-2' for='uni_name'>University Name</label>
+            <div class='col-md-6'>
+              <div class='form-group'>
+                <div class='col-md-11'>
+                  <input class='form-control' id='uni_name' name="uni_name" placeholder='University Name' type='text'>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='form-group'>
+            <label class='control-label col-md-2 col-md-offset-2' for='uni_website'>University Website</label>
+            <div class='col-md-6'>
+              <div class='form-group'>
+                <div class='col-md-11'>
+                  <input class='form-control' id='uni_website' name='uni_website' placeholder='University Website' type='text'>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='form-group'>
+            <label class='control-label col-md-2 col-md-offset-2' for='uni_website'>University Phone</label>
+            <div class='col-md-6'>
+              <div class='form-group'>
+                <div class='col-md-11'>
+                  <input class='form-control' id='uni_phone' name='uni_phone' placeholder='University Phone' type='text'>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='form-group'>
+            <label class='control-label col-md-2 col-md-offset-2' for='uni_poc'>Point of Contact</label>
+            <div class='col-md-6'>
+              <div class='form-group'>
+                <div class='col-md-11'>
+                  <input class='form-control' id='uni_poc' name='uni_poc'  placeholder='Point of Contact' type='text'>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='form-group'>
+            <label class='control-label col-md-2 col-md-offset-2' for='uni_role'>POC Role</label>
+            <div class='col-md-6'>
+              <div class='form-group'>
+                <div class='col-md-11'>
+                  <input class='form-control' id='uni_role' name='uni_role' placeholder='POC Role' type='text'>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='form-group'>
+            <label class='control-label col-md-2 col-md-offset-2' for='uni_email_poc'>POC Email-Id</label>
+            <div class='col-md-6'>
+              <div class='form-group'>
+                <div class='col-md-11'>
+                  <input class='form-control' id='uni_email_poc' name='uni_email_poc' placeholder='POC Email-Id' type='text'>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='form-group'>
+            <label class='control-label col-md-2 col-md-offset-2' for='uni_password'>Password</label>
+            <div class='col-md-6'>
+              <div class='form-group'>
+                <div class='col-md-11'>
+                  <input class='form-control' id='uni_password' name="uni_password" placeholder='Password' type='password'>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='form-group'>
+            <div class='col-md-offset-4 col-md-3'>
+              {{!-- <button class='btn-lg btn-primary' type='submit'>Request Reservation</button> --}}
+                <div class="login-button">
+                    <button type="submit" class="btn btn-outline-primary" >Sign Up</button>
+                </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
